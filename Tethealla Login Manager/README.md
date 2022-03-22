@@ -1,3 +1,0 @@
-﻿# Tethealla Login Manager
-
-test
