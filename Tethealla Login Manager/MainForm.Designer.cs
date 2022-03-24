@@ -222,7 +222,7 @@ namespace Tethealla_Login_Manager
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(6, 24);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(265, 266);
+            this.groupBox1.Size = new System.Drawing.Size(265, 270);
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Login Configuration";
@@ -464,7 +464,7 @@ namespace Tethealla_Login_Manager
             // 
             // btnSaveLogin
             // 
-            this.btnSaveLogin.Location = new System.Drawing.Point(297, 267);
+            this.btnSaveLogin.Location = new System.Drawing.Point(299, 267);
             this.btnSaveLogin.Name = "btnSaveLogin";
             this.btnSaveLogin.Size = new System.Drawing.Size(216, 23);
             this.btnSaveLogin.TabIndex = 22;
@@ -509,36 +509,34 @@ namespace Tethealla_Login_Manager
             // txtGlobalGMName
             // 
             this.txtGlobalGMName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(148)))), ((int)(((byte)(247)))));
-            this.txtGlobalGMName.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtGlobalGMName.Cursor = System.Windows.Forms.Cursors.Hand;
             this.txtGlobalGMName.Location = new System.Drawing.Point(139, 267);
             this.txtGlobalGMName.Name = "txtGlobalGMName";
             this.txtGlobalGMName.ReadOnly = true;
-            this.txtGlobalGMName.Size = new System.Drawing.Size(120, 13);
+            this.txtGlobalGMName.Size = new System.Drawing.Size(120, 20);
             this.txtGlobalGMName.TabIndex = 28;
             this.txtGlobalGMName.Click += new System.EventHandler(this.txtGlobalGMName_Click);
             // 
             // txtNormalName
             // 
             this.txtNormalName.BackColor = System.Drawing.Color.White;
-            this.txtNormalName.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtNormalName.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.txtNormalName.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtNormalName.Location = new System.Drawing.Point(139, 215);
             this.txtNormalName.Name = "txtNormalName";
             this.txtNormalName.ReadOnly = true;
-            this.txtNormalName.Size = new System.Drawing.Size(120, 13);
+            this.txtNormalName.Size = new System.Drawing.Size(120, 20);
             this.txtNormalName.TabIndex = 27;
             this.txtNormalName.Click += new System.EventHandler(this.txtNormalName_Click);
             // 
             // txtLocalGMName
             // 
             this.txtLocalGMName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(206)))), ((int)(((byte)(222)))));
-            this.txtLocalGMName.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtLocalGMName.Cursor = System.Windows.Forms.Cursors.Hand;
             this.txtLocalGMName.Location = new System.Drawing.Point(139, 241);
             this.txtLocalGMName.Name = "txtLocalGMName";
             this.txtLocalGMName.ReadOnly = true;
-            this.txtLocalGMName.Size = new System.Drawing.Size(120, 13);
+            this.txtLocalGMName.Size = new System.Drawing.Size(120, 20);
             this.txtLocalGMName.TabIndex = 26;
             this.txtLocalGMName.Click += new System.EventHandler(this.txtLocalGMName_Click);
             // 
