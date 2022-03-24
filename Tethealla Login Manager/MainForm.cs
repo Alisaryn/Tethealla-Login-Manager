@@ -521,7 +521,7 @@ namespace Tethealla_Login_Manager
             }
             catch
             {
-                MessageBox.Show("The process 'patch_server.exe' was not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("The file 'patch_server.exe' was not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
         }
@@ -540,7 +540,7 @@ namespace Tethealla_Login_Manager
             }
             catch
             {
-                MessageBox.Show("The process 'login_server.exe' was not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("The file 'login_server.exe' was not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
         }
