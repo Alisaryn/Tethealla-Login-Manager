@@ -78,7 +78,6 @@ namespace Tethealla_Login_Manager
             this.lnkPatchRunning = new System.Windows.Forms.LinkLabel();
             this.lnkPatchDown = new System.Windows.Forms.LinkLabel();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.txtPatchWelcome = new System.Windows.Forms.TextBox();
             this.chkUnlimited = new System.Windows.Forms.CheckBox();
             this.nmPatchUpload = new System.Windows.Forms.NumericUpDown();
             this.label21 = new System.Windows.Forms.Label();
@@ -86,6 +85,7 @@ namespace Tethealla_Login_Manager
             this.chkPatchRestart = new System.Windows.Forms.CheckBox();
             this.label20 = new System.Windows.Forms.Label();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.txtPatchWelcome = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.nmMaxClients)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmPort)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmMaxShips)).BeginInit();
@@ -666,17 +666,6 @@ namespace Tethealla_Login_Manager
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Patch Server Message";
             // 
-            // txtPatchWelcome
-            // 
-            this.txtPatchWelcome.AcceptsReturn = true;
-            this.txtPatchWelcome.AcceptsTab = true;
-            this.txtPatchWelcome.Location = new System.Drawing.Point(10, 19);
-            this.txtPatchWelcome.Multiline = true;
-            this.txtPatchWelcome.Name = "txtPatchWelcome";
-            this.txtPatchWelcome.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtPatchWelcome.Size = new System.Drawing.Size(493, 211);
-            this.txtPatchWelcome.TabIndex = 26;
-            // 
             // chkUnlimited
             // 
             this.chkUnlimited.AutoSize = true;
@@ -752,6 +741,15 @@ namespace Tethealla_Login_Manager
             this.notifyIcon1.Text = "Tethealla Login Manager - Double click to show/hide ";
             this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
             // 
+            // txtPatchWelcome
+            // 
+            this.txtPatchWelcome.AcceptsTab = true;
+            this.txtPatchWelcome.Location = new System.Drawing.Point(10, 19);
+            this.txtPatchWelcome.Name = "txtPatchWelcome";
+            this.txtPatchWelcome.Size = new System.Drawing.Size(493, 211);
+            this.txtPatchWelcome.TabIndex = 27;
+            this.txtPatchWelcome.Text = "";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -788,7 +786,6 @@ namespace Tethealla_Login_Manager
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nmPatchUpload)).EndInit();
             this.ResumeLayout(false);
 
@@ -842,7 +839,6 @@ namespace Tethealla_Login_Manager
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.CheckBox chkPatchRestart;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.TextBox txtPatchWelcome;
         private System.Windows.Forms.CheckBox chkUnlimited;
         private System.Windows.Forms.NumericUpDown nmPatchUpload;
         private System.Windows.Forms.Label label21;
@@ -850,6 +846,7 @@ namespace Tethealla_Login_Manager
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.LinkLabel lnkPatchDown;
         private System.Windows.Forms.LinkLabel lnkPatchRunning;
+        private System.Windows.Forms.RichTextBox txtPatchWelcome;
     }
 }
 

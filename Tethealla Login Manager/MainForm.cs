@@ -364,7 +364,7 @@ namespace Tethealla_Login_Manager
             {
                 using (FileStream fs = File.Open("welcome.txt", FileMode.Open, FileAccess.Read, FileShare.None))
                 {
-                    using (StreamReader reader = new StreamReader(fs))
+                    using (StreamReader reader = new StreamReader(fs, System.Text.Encoding.Unicode)) // Make sure to read as Unicode.
                     {
                         string tempLine = String.Empty;
 
@@ -685,11 +685,11 @@ namespace Tethealla_Login_Manager
 
             using (FileStream fs = File.Open("welcome.txt", FileMode.Create, FileAccess.Write, FileShare.None))
             {
-                using (StreamWriter fileData = new StreamWriter(fs))
+                using (StreamWriter fileData = new StreamWriter(fs, System.Text.Encoding.Unicode)) // Make sure to write in Unicode.
                 {
                     for (int i=0;i<txtPatchWelcome.Lines.Length;i++)
                     {
-                        fileData.Write(txtPatchWelcome.Lines[i] + "\n");
+                        fileData.Write(txtPatchWelcome.Lines[i] + "\n"); 
                     }
                 }
                 fs.Close();
@@ -702,7 +702,7 @@ namespace Tethealla_Login_Manager
     // Extended textbox function, used for easier addition of lines in our patch server welcome message textbox!
     public static class WinFormsExtensions
     {
-        public static void AppendLine(this TextBox source, string value)
+        public static void AppendLine(this RichTextBox source, string value)
         {
             if (source.Text.Length == 0)
                 source.Text = value;
