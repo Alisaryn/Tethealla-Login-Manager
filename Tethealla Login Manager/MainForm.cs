@@ -702,7 +702,7 @@ namespace Tethealla_Login_Manager
     // Extended textbox function, used for easier addition of lines in our patch server welcome message textbox!
     public static class WinFormsExtensions
     {
-        public static void AppendLine(this RichTextBox source, string value)
+        public static void AppendLine(this TextBox source, string value)
         {
             if (source.Text.Length == 0)
                 source.Text = value;

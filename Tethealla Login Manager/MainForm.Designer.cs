@@ -85,7 +85,7 @@ namespace Tethealla_Login_Manager
             this.chkPatchRestart = new System.Windows.Forms.CheckBox();
             this.label20 = new System.Windows.Forms.Label();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
-            this.txtPatchWelcome = new System.Windows.Forms.RichTextBox();
+            this.txtPatchWelcome = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.nmMaxClients)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmPort)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmMaxShips)).BeginInit();
@@ -743,12 +743,14 @@ namespace Tethealla_Login_Manager
             // 
             // txtPatchWelcome
             // 
+            this.txtPatchWelcome.AcceptsReturn = true;
             this.txtPatchWelcome.AcceptsTab = true;
             this.txtPatchWelcome.Location = new System.Drawing.Point(10, 19);
+            this.txtPatchWelcome.Multiline = true;
             this.txtPatchWelcome.Name = "txtPatchWelcome";
+            this.txtPatchWelcome.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtPatchWelcome.Size = new System.Drawing.Size(493, 211);
-            this.txtPatchWelcome.TabIndex = 27;
-            this.txtPatchWelcome.Text = "";
+            this.txtPatchWelcome.TabIndex = 0;
             // 
             // MainForm
             // 
@@ -786,6 +788,7 @@ namespace Tethealla_Login_Manager
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nmPatchUpload)).EndInit();
             this.ResumeLayout(false);
 
@@ -846,7 +849,7 @@ namespace Tethealla_Login_Manager
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.LinkLabel lnkPatchDown;
         private System.Windows.Forms.LinkLabel lnkPatchRunning;
-        private System.Windows.Forms.RichTextBox txtPatchWelcome;
+        private System.Windows.Forms.TextBox txtPatchWelcome;
     }
 }
 
