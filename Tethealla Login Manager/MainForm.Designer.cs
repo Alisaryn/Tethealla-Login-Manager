@@ -676,7 +676,6 @@ namespace Tethealla_Login_Manager
             this.txtPatchWelcome.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtPatchWelcome.Size = new System.Drawing.Size(493, 211);
             this.txtPatchWelcome.TabIndex = 26;
-            this.txtPatchWelcome.Text = "Unconfigured welcome.txt";
             // 
             // chkUnlimited
             // 

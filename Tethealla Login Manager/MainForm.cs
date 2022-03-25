@@ -379,6 +379,7 @@ namespace Tethealla_Login_Manager
             }
             catch // welcome.txt not found, use default setting.
             {
+                txtPatchWelcome.AppendLine("Unconfigured welcome.txt");
                 useDefaultWelcome = true; // Has no use for now, but maybe used later!
             }
         }
