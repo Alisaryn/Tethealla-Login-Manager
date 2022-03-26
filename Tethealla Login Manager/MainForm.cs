@@ -65,8 +65,6 @@ namespace Tethealla_Login_Manager
         // Patch thread function. Used to check if the patch server is running, and restart it automatically if not.
         private void PatchServerStart()
         {
-            lnkPatchRunning.Invoke(new Action(() => lnkPatchRunning.Text = "Starting"));
-
             try
             {
                 bool isPatchRunning, patchUp;
@@ -77,8 +75,8 @@ namespace Tethealla_Login_Manager
 
                     if (isPatchRunning)
                     {
-                        lnkPatchDown.Hide();
-                        lnkPatchRunning.Show();
+                        lnkPatchDown.Invoke(new MethodInvoker(() => lnkPatchDown.Hide()));
+                        lnkPatchRunning.Invoke(new MethodInvoker(() => lnkPatchRunning.Show()));
                         patchUp = false;                     
                         IPGlobalProperties properties = IPGlobalProperties.GetIPGlobalProperties();
                         IPEndPoint[] endPoints = properties.GetActiveTcpListeners();
@@ -103,8 +101,9 @@ namespace Tethealla_Login_Manager
                     }
                     else
                     {
-                        lnkPatchDown.Show();
-                        lnkPatchRunning.Hide();
+                        lnkPatchDown.Invoke(new MethodInvoker(() => lnkPatchDown.Show()));
+                        lnkPatchRunning.Invoke(new MethodInvoker(() => lnkPatchRunning.Hide()));
+                        
                         if (chkPatchRestart.Checked == true)
                         {                           
                             // Restart the process and hide the console window!
@@ -113,8 +112,6 @@ namespace Tethealla_Login_Manager
                             patch_process.StartInfo.UseShellExecute = true;
                             patch_process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
                             patch_process.Start();
-                            
-                            // Some invoking is needed here, otherwise bad things can happen...
                             lnkPatchDown.Invoke(new MethodInvoker(() => lnkPatchDown.Hide()));
                             lnkPatchRunning.Invoke(new MethodInvoker(() => lnkPatchRunning.Show()));                                                
                         }
@@ -141,13 +138,13 @@ namespace Tethealla_Login_Manager
 
                     if (isLoginRunning)
                     {
-                        lnkLoginDown.Hide();
-                        lnkLoginRunning.Show();
+                        lnkLoginDown.Invoke(new MethodInvoker(() => lnkLoginDown.Hide()));
+                        lnkLoginRunning.Invoke(new MethodInvoker(() => lnkLoginRunning.Show()));
                         loginUp = false;                      
                         IPGlobalProperties properties = IPGlobalProperties.GetIPGlobalProperties();
                         IPEndPoint[] endPoints = properties.GetActiveTcpListeners();
 
-                        // In order to check uptime, check all listening ports for our patch server.
+                        // In order to check uptime, check all listening ports for our login server.
                         foreach (IPEndPoint e in endPoints)
                         {
                             if (e.Port == (int)(nmPort.Value))
@@ -167,8 +164,9 @@ namespace Tethealla_Login_Manager
                     }
                     else
                     {
-                        lnkLoginDown.Show();
-                        lnkLoginRunning.Hide();
+                        lnkLoginDown.Invoke(new MethodInvoker(() => lnkLoginDown.Show()));
+                        lnkLoginRunning.Invoke(new MethodInvoker(() => lnkLoginRunning.Hide()));
+
                         if (chkLoginRestart.Checked == true)
                         {
                             // Restart the process and hide the console window!
@@ -177,8 +175,8 @@ namespace Tethealla_Login_Manager
                             login_process.StartInfo.UseShellExecute = true;
                             login_process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
                             login_process.Start();
-                            lnkLoginDown.Hide();
-                            lnkLoginRunning.Show();
+                            lnkLoginDown.Invoke(new MethodInvoker(() => lnkLoginDown.Hide()));
+                            lnkLoginRunning.Invoke(new MethodInvoker(() => lnkLoginRunning.Show()));
                         }
                     }
                     Thread.Sleep(1000);
@@ -191,14 +189,16 @@ namespace Tethealla_Login_Manager
         }
 
         // Write the specified user preference flag for auto-restart to our config file.
-        private void write_restart_flag(int flag)
+        private void write_restart_flag(int loginFlag, int patchFlag)
         {
             using (FileStream fs = File.Open("login_manager.ini", FileMode.Create, FileAccess.Write, FileShare.None))
             {
                 using (StreamWriter fileData = new StreamWriter(fs))
                 {
-                    fileData.WriteLine("# Preference for 'Restart Automatically' checkboxes. 0 = disabled, 1 = enabled.");
-                    fileData.Write(flag);                  
+                    fileData.WriteLine("# Preference for the login server's 'Restart Automatically' checkbox. 0 = disabled, 1 = enabled.");
+                    fileData.WriteLine(loginFlag);
+                    fileData.WriteLine("# Preference for the patch server's 'Restart Automatically' checkbox. 0 = disabled, 1 = enabled.");
+                    fileData.Write(patchFlag);
                 }
                 fs.Close();
             }
@@ -207,7 +207,8 @@ namespace Tethealla_Login_Manager
 
         private void Form1_Load(object sender, EventArgs e)
         {                     
-            int restartFlag = 0, patchUpload = 0;
+            int patchUpload = 0;
+            int[] restartFlags =  new int[2];
             bool useDefaultPatchSettings = false, useDefaultWelcome = false;
             // Threads to check patch and login statuses.
             Thread PatchActiveThread = new Thread(PatchServerStart);
@@ -233,16 +234,18 @@ namespace Tethealla_Login_Manager
                 {
                     using (StreamReader reader = new StreamReader(fs))
                     {
-                        string tempLine = String.Empty;
+                        int idx = 0;
+                        string temp = String.Empty;
 
                         while (!reader.EndOfStream)
                         {
-                            tempLine = reader.ReadLine();
-                            if (tempLine.Substring(0, 1) != "#")
+                            temp = reader.ReadLine();
+                            if (temp.Substring(0, 1) != "#")
                             {
-                                restartFlag = int.Parse(tempLine);                             
-                                break;
+                                restartFlags[idx] = int.Parse(temp);
+                                idx++;
                             }
+                            if (idx > 1) break;
                         }
                     }
                     fs.Close();
@@ -250,21 +253,29 @@ namespace Tethealla_Login_Manager
             }
             catch // Not found, default to 0.
             {
-                write_restart_flag(0);
+                write_restart_flag(0, 0);
             }
 
-            if (restartFlag == 1)
+            // Login checkbox settings.
+            if (restartFlags[0] == 1)
             {
-                chkPatchRestart.Checked = true;
                 chkLoginRestart.Checked = true;
             }
             else
             {
-                chkPatchRestart.Checked = false;
                 chkLoginRestart.Checked = false;
             }
 
-            
+            // Patch checkbox settings.
+            if (restartFlags[1] == 1)
+            {
+                chkPatchRestart.Checked = true;
+            }
+            else
+            {
+                chkPatchRestart.Checked = false;
+            }
+
             // Read tethaella.ini, ignoring comment lines.
             try
             {
@@ -573,17 +584,20 @@ namespace Tethealla_Login_Manager
         }
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            int temp;
+            int tempLogin, tempPatch;
 
-            if (chkLoginRestart.Checked == false || chkPatchRestart.Checked == false) temp = 0;
-            else temp = 1;
+            if (chkLoginRestart.Checked == false) tempLogin = 0;
+            else tempLogin = 1;
+            if (chkPatchRestart.Checked == false) tempPatch = 0;
+            else tempPatch = 1;
 
+            Hide();
             chkLoginRestart.Checked = false;
             chkPatchRestart.Checked = false;
             stop_server_process("\\login_server.exe");
             stop_server_process("\\patch_server.exe");
 
-            write_restart_flag(temp);
+            write_restart_flag(tempLogin, tempPatch);
         }
 
         // Also close the server processes if their respective "Running" label is clicked.      
@@ -596,18 +610,6 @@ namespace Tethealla_Login_Manager
         {
             chkLoginRestart.Checked = false;
             stop_server_process("\\login_server.exe");
-        }
-
-        // Update user preference for restarting whenever either checkbox is toggled.
-        private void chkRestart_CheckedChanged(object sender, EventArgs e)
-        {
-            if (chkLoginRestart.Checked == true) write_restart_flag(1);
-            else write_restart_flag(0);
-        }
-        private void chkPatchRestart_CheckedChanged(object sender, EventArgs e)
-        {
-            if (chkPatchRestart.Checked == true) write_restart_flag(1);
-            else write_restart_flag(0);
         }
 
         // Needed in order to prevent the cursor from being visible in these textboxes!

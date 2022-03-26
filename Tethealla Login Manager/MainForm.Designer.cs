@@ -602,7 +602,6 @@ namespace Tethealla_Login_Manager
             this.chkLoginRestart.TabIndex = 20;
             this.chkLoginRestart.Text = "Restart Automatically";
             this.chkLoginRestart.UseVisualStyleBackColor = true;
-            this.chkLoginRestart.CheckedChanged += new System.EventHandler(this.chkRestart_CheckedChanged);
             // 
             // label14
             // 
@@ -734,7 +733,6 @@ namespace Tethealla_Login_Manager
             this.chkPatchRestart.TabIndex = 24;
             this.chkPatchRestart.Text = "Restart Automatically";
             this.chkPatchRestart.UseVisualStyleBackColor = true;
-            this.chkPatchRestart.CheckedChanged += new System.EventHandler(this.chkPatchRestart_CheckedChanged);
             // 
             // label20
             // 
