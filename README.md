@@ -8,7 +8,7 @@ Place login_manager.exe in the same directory as login_server.exe and run. Defau
 
 # Version History
 1.01:
-Fixed the bottom tab border from being cut off.
+- Fixed the bottom tab border from being cut off.
 
 1.0:
 - Initial release.
