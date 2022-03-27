@@ -210,6 +210,7 @@ namespace Tethealla_Login_Manager
             int patchUpload = 0;
             int[] restartFlags =  new int[2];
             bool useDefaultPatchSettings = false, useDefaultWelcome = false;
+
             // Threads to check patch and login statuses.
             Thread PatchActiveThread = new Thread(PatchServerStart);
             PatchActiveThread.IsBackground = true;
