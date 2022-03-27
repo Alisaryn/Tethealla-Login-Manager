@@ -666,7 +666,7 @@ namespace Tethealla_Login_Manager
             }
         }
 
-        // Save handler for both patch.ini and welcome.txt
+        // Save handler for both patch.ini and welcome.txt.
         private void btnPatchSave_Click(object sender, EventArgs e)
         {
             using (FileStream fs = File.Open("patch.ini", FileMode.Create, FileAccess.Write, FileShare.None))
