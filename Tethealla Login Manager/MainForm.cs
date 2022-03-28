@@ -132,7 +132,7 @@ namespace Tethealla_Login_Manager
             {
                 bool isLoginRunning, loginUp;
 
-                for (; ; )
+                for ( ; ; )
                 {
                     isLoginRunning = ProgramIsRunning(@System.IO.Path.GetDirectoryName(Application.ExecutablePath) + "\\login_server.exe");
 
@@ -368,7 +368,7 @@ namespace Tethealla_Login_Manager
             }
             catch // patch.ini not found, use default setting.
             {
-                useDefaultPatchSettings = true; // Has no use for now, but used maybe later!
+                useDefaultPatchSettings = true; // Has no use for now, but maybe used later!
             }
 
             // Read welcome.txt message.
