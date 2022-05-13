@@ -26,7 +26,7 @@ namespace Tethealla_Login_Manager
     public partial class MainForm : Form
     {
         // Global class members for the main form. 
-        bool useDefaultLoginSettings = false;       // Use default login settings? (In cases where tethealla.ini was not found, or could not be read correctly.
+        bool useDefaultLoginSettings = false;       // Use default login settings? (In cases where tethealla.ini was not found, or could not be read correctly.)
         string[] loginSettings = new string[22];    // String array for tethealla.ini settings.
 
         public MainForm()
